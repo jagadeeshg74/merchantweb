@@ -1,0 +1,58 @@
+<br>
+<!-- /.row -->
+ <div *ngIf="reportMessage" class="alert alert-success"> 
+        {{ reportMessage }} 
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger"> 
+            {{ errorMessage }} 
+        </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Reports
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+               
+                        <div class="row">
+                        <div class="form-group" >
+                            <label class="col-sm-2 control-label">Daily Report </label>
+                            <div class="col-sm-4">
+                             <input type="date" class="form-control well" placeholder="Report Date" 
+                                    [(ngModel)]="report_date" name="reportDate" >
+                                     </div>
+                            <div class=" col-sm-2 col-xs-4">
+                                 <button class="btn btn-info" (click)="reportDownload('daily')">Download</button>
+                            </div>
+                                <!--div class="col-sm-2">
+                                    <button
+                                    (click)="reportDownload('daily')">download
+                                  </button> </div-->
+                        </div></div>
+                        <div class="row">
+                            <div class="form-group" >
+                            <label class="col-sm-2 control-label">Monthly Report </label>
+                            <div class=" col-sm-4 well">
+                                <select class="form-control" name="selreportMonth" (change)="parseReportMonth($event.target.value)" >
+                                    <option [value] = "11092017"  selected >September 2017</option>
+                                    <option [value] = "11102017" >October 2017</option>
+                                    <option [value] = "11112017" >November 2017</option>
+                                    <option [value] = "11122017" >December 2017</option>
+                                </select>   </div>
+                        <div class="col-sm-2 col-xs-4 "> 
+                            <button class="btn btn-info"  (click)="reportDownload('monthly')">Download</button></div>
+                                <!---div class="col-sm-2"><label class="control-label"> 
+                                    <button  
+                                    (click)="reportDownload('monthly')">download
+                                  </button> </label>
+                                      </div-->
+                        </div>
+                    </div>               
+            
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div></div>
+    </div>
+

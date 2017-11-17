@@ -1,0 +1,97 @@
+<div class="container">
+        <a class="navbar-brand" href="#">
+                <img src="./assets/images/poyalty_120917_final-01.png" width="100" height="35" alt="">
+              </a>
+            </div>  
+            
+<div class="container">        
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+<div class="login-panel panel panel-default">
+<div class="panel-body">
+        
+    <form role="form">         
+        <fieldset>
+                <div *ngIf="infoMessage" class="alert alert-success  col-sm-12">
+                    {{infoMessage}}
+                </div>
+                <div *ngIf="errorMessage" class="alert alert-danger"> 
+                        {{ errorMessage }} 
+                        </div>
+
+            <div class="input-group" style="margin-bottom: 20px">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Enter User Id  " id="email" 
+                        [(ngModel)]="email" name="email" required #em="ngModel" autofocus >
+                           
+            </div>
+            <div class="input-group" style="margin-bottom: 20px">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Enter Password" id="password" 
+                            [(ngModel)]="password" name="password" required #pwd="ngModel">                         
+            </div>
+        
+            <div style="margin-top:10px" class="form-group">
+                    <!-- Button -->
+
+                    <div class=" controls">
+                        <a id="btn-login"  class="btn btn-info" (click)="login()" >Login </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-md-12 control">
+                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >                                 
+                                     <a data-target="#pwdModal" data-toggle="modal" >Forgot Password</a>
+                            </div>
+                        </div>
+                    </div> 
+            
+        </fieldset>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--modal-->
+<div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header bg-info">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+            <h5 class="text-center1">Forgot Password?</h5>
+        </div>
+        <div class="modal-body">
+
+                          <div class="text-center1">
+                            
+                            <p>Enter your email address below to reset your password.</p>                             
+                                  <fieldset>
+                                      <div class="form-group">
+                                          <input class="form-control" placeholder="E-mail Address" name="email" type="email" [(ngModel)]="useremailid">
+                                      </div>                                    
+                                  </fieldset>              
+                  </div>
+             
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-12">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="resetPassword()" >Send My Password</button>
+                    <button class="btn" data-dismiss="pwdModal" aria-hidden="true">Cancel</button>
+            </div>	
+        </div>
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+

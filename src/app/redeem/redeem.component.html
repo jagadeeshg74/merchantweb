@@ -1,0 +1,219 @@
+<br>
+<div class="row">
+        <div class="col-xs-12 col-sm-12">
+                <div class="panel panel-default"  >
+                <div class="panel-heading" style='font-size:large'>
+                        Accrue Redeem 
+                </div>
+                <div class="panel-body">
+                        <form class="form-horizontal" role="form">                  
+                        <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label  margin2 top-buffer"> Customer +91 </label>
+                                <div class="col-sm-4  well margin2 ">
+                                    <input type="input" class="form-control " style="
+                                    background-color: #3CBC8D ;color: white;  border-radius: 5px; !important " placeholder="customer mobile no" type="text" [(ngModel)]="mobile_no" name="mobile_no" >
+                                </div>
+                                 <div class="col-sm-1 top-buffer margin2"><img src="./assets/images/MerchantGo.png" width="35" (click)="getCustomerByMobile()"/></div>
+                                </div>                             
+                        </div>
+                <!-- /.panel-body -->
+                </form> 
+                </div>
+                <!-- /.panel -->
+                </div>
+        <!-- /.col-xs-12 -->
+        </div>
+</div>
+<!-- /.row -->
+<div *ngIf="custMessage" class="alert alert-danger"> 
+    {{ custMessage }} 
+</div>
+
+<!---border style="border:1px solid #cecece;"-->
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12"  >
+    <div class="panel panel-default" *ngIf='customer' >
+        <div class="panel-heading" style='font-size:large' >
+                    Customer Details :  # {{customer.cm_mobile_no }}
+        </div>
+        <div class="panel-body">           
+<div class=" col-xs-12" >
+    <!---style="border: 2px solid black"  -->
+    <div class="row" >
+            <div class="col-xs-2 thumbnail no-padding ">
+                    <img class="thumbnail no-margin"
+                            src="{{'../user/'+customer.cm_profile_photo}}" 
+                            onError="this.src='./assets/images/placeholder.jpg';" alt=" "/>
+                        </div>
+            <!--/.photobox-->
+                <div class="col-xs-6">
+                    
+                    <h4>{{customer.cm_Name}}</h4>
+                    <div class="hidden-xs">
+                        <address >
+                        <br> {{customer.cm_address_1}}
+                        <br> {{customer.cm_address_2}}
+                    </address>
+                </div>
+                        <br> {{customer.cm_town}}
+                        <br> {{customer.cm_city}},{{customer.cm_state}}
+                      
+                </div>
+                    <div class="col-xs-4" *ngIf="customer.poyalty_card &&  customer.merchant_poyalty" >
+                        <button type="button" class="btn btn-warning">{{customer.merchant_poyalty.mp_poyals_accrued}}</button>
+                        <button type="button" class="btn">{{customer.poyalty_card.cp_poyals_accrued}}</button>
+                    </div>
+                    <div class="col-xs-4" *ngIf= " customer.poyalty_card === undefined " >
+                        <button type="button" class="btn btn-warning">0 </button>
+                        <button type="button" class="btn">0</button>
+                    </div>
+    </div>
+         
+<div class="row hidden-xs">
+    <div >
+    <div class="col-sm-1  col-xs-2 ">
+    <img class="pull-left"
+               src="./assets/images/walkins.png"
+               alt="company logo">
+    </div>
+    <div class="col-sm-4"  >
+            <ul class="list-unstyled">
+            <li> {{customer.visits.recent}} th time this Year </li>
+            <li>{{customer.visits.total}} times overall</li>
+            </ul>
+    </div>
+    <div class="col-sm-1  col-xs-2 ">
+        <span class="media-left"><img class="pull-left"
+                src="./assets/images/returanttype.png"
+                alt="company logo"></span>
+    </div>
+
+    <div class="col-sm-4 "  >
+            <ul class="list-unstyled list-group">
+                    <li *ngFor="let cusine of customer.cusines ; let isEven = even; let isOdd = odd "                 
+                    [ngClass]="isEven ? 'list-group-item list-group-item active' : 'list-group-item list-group-item-info'">
+                    {{cusine}}</li>                 
+            </ul>
+    </div>
+</div>
+</div>
+        <div class="hidden-xs"  >
+                <div class="col-sm-1  col-xs-2 " >
+                    <span class="media-left"><a href=""><img class="pull-left"
+                            src="./assets/images/reviews.png"
+                            alt="company logo"></a></span>
+                </div>
+                <div class="col-md-6 col-sm-9  col-xs-4 ">
+                    <ul class="list-unstyled ">
+                    <li class="">Reviwed <strong>{{customer.reviews.total}}</strong> restaurants
+                    </li>
+                    <li class="">Rated 5 ★ for {{customer.reviews.five_ratings}} restaurants</li>
+                    <li class="">Rated <strong> <span style="color:red"> {{customer.reviews.rating}} </span> </strong> your restaurant</li>
+                    </ul>
+                </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<!--/.add-desc-box-->
+</div>
+<!--/.job-item-->
+</div>
+<!-- /.panel-body -->
+
+<!-- /.panel -->
+
+<!-- /.row -->
+
+<!---- Billing and Redeem info ---->
+            <!-- /.row -->
+<div class="row" *ngIf='customer' >
+<div class="col-sm-12">
+        <div *ngIf="redeemMessage" class="alert alert-success"> 
+                {{redeemMessage }}
+            </div>
+        <div *ngIf="errorMessage" class="alert alert-danger"> 
+                {{errorMessage }} 
+            </div>
+<div class="panel panel-default" >
+<div class="panel-heading" style='font-size:large' >
+Customer Redeem
+</div>
+<div class="panel-body">
+  <br>
+  <div  *ngIf ="checkRedeem()"  class="alert alert-danger">
+      Redeem points cannot be greater than available poyals !!
+  </div>
+  <div *ngIf ="isValidRedeem()"  class="alert alert-danger">
+         Redeem points cannot be greater than billable amount !!
+  </div>
+
+
+ <form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label "> * Bill Amount</label>
+            <div class="col-sm-4 well">
+                <input type="text" class="form-control"   [(ngModel)]="bill_amount" placeholder="Amount" name="bill_amount" title="total bill amount">
+            </div>
+            <div class="col-sm-2 well">
+                <input  class="form-control" type="text"  class="form-control" id ="bill_no"  name="bill_no" [(ngModel)]="bill_no" placeholder="* Bill No " title="bill no">
+             </div>
+            <div class="col-sm-3 well">
+                <input  class="form-control"  type="date"  name="billDate" [(ngModel)]="bill_date"  placeholder="Bill_Date" title="bill_date">
+            </div>
+    </div>
+
+    <div class="form-group ">
+        <label class="col-sm-2 control-label">Redeem</label>
+        <div class="col-sm-4 well">
+        <input type="text" class="form-control"  [(ngModel)]="redeem_amount" id ="redeem_amount" name="redeem_amount"  placeholder="Redeem Amount">
+    </div>
+<label class="control-label well">  Available Cash Points</label>
+  <div class="col-sm-2 well" *ngIf="customer.merchant_poyalty">
+        <input class="form-control" type="text" disabled class="form-control" [(ngModel)]="customer.merchant_poyalty.mp_poyals_balance" name="available_poyals" placeholder="Available Cash Points" >
+  </div>
+  <div class="col-sm-2 well-lg" *ngIf= "customer.merchant_poyalty === null ">
+    <input class="form-control" type="text" disabled class="form-control"  value=0 placeholder="Available Cash Points" >
+    </div>
+  </div>
+
+<div class="form-group" >
+    <label class="col-sm-2 control-label ">Final Amount</label>
+    <div class="col-sm-4 well">
+        <input type="text" disabled class="form-control" [(ngModel)]="final_amount" name="final_amount" placeholder="Final Amount" value={{calcFinalAmt()}}>
+    </div>
+    <label class="control-label well"> Accrued Cash Points</label>
+        <div class="col-sm-2 well">
+            <input class="form-control" type="text" disabled class="form-control" [(ngModel)]="accrued_poyals" name="accrued_poyals" placeholder="Accrued Cash Points" value={{calcAccruedPoyals()}}>
+        </div>
+</div>
+
+    <div class="row-fluid">
+     <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2 col-xs-4 col-xs-offset-2">
+            <button type="submit" class="btn btn-success btn-label-left" (click)="redeem()">
+            <span><i class="fa fa-clock-o"></i></span>
+            Proceed
+            </button>
+        </div>
+
+        <div class="col-sm-2 col-xs-4">
+                <button type="cancel" class="btn btn-danger btn-label-left" (click)="reset()">
+                <span><i class="fa fa-clock-o txt-danger"></i></span>
+                Cancel
+                </button>
+        </div>
+</div>
+</div>
+
+</form>
+</div>
+</div>
+<!-- /.row (nested) -->
+</div>
+<!-- /.panel-body -->
+</div>
+

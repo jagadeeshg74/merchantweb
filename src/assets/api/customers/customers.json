@@ -1,0 +1,42 @@
+[
+    {
+        "cm_cust_id": 9044,
+        "cm_mobile_no": 1200,
+        "cm_Name": "Omprakash Manivannan",
+        "cm_alt_mobile": "8986767676",
+        "cm_email": "ommanivannan@gmail.com",
+        "cm_address_1": "Olympia Opaline",
+        "cm_address_2": "OMR",
+        "cm_town":"Chennai",
+        "cm_pincode" : "400119" ,
+        "cm_city" : "Kancheepuram " ,
+        "cm_state" : "Tamilnadu"	,	
+        "imageUrl": " ",
+
+        "visits":{"current_year" : 5 ,"overall": 10 } ,
+        "reviews": {"totals": 200 , "fivestars":50 ,"rating":3.5},
+        "preferences" : ["south_indian" ,"mexican"],
+        "poyals_accrued" : 2000,
+        "poyals_redeemed" :  15000
+
+    },
+     {
+        "cm_cust_id": 9055,
+        "cm_mobile_no": 900,
+        "cm_Name": "Jagadeshan Gopalakrishnan",
+        "cm_alt_mobile": "8986767676",
+        "cm_email": "jagadeshg@gmail.com",
+        "cm_address_1": "4452 river view street",
+        "cm_address_2": "Ambedkar Colony",
+        "cm_town":"Manapakkam",
+        "cm_pincode" : "6000987" ,
+        "cm_city" : "Chennai " ,
+        "cm_state" : "Tamilnadu"	,	
+        "imageUrl": " ", 
+        "visits":{"current_year" : 5 ,"overall": 10 } ,
+        "reviews": {"total": 200 , "fivestars":50 ,"rating":3.5},
+        "preferences" : ["south_indian" ,"mexican"],
+        "poyals_accrued" : 2000,
+        "poyals_redeemed" :  15000
+    }
+]
